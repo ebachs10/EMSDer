@@ -1,5 +1,5 @@
 """
-WSGI config for emsder project.
+WSGI config for emsder_project project.
 
 It exposes the WSGI callable as a module-level variable named ``application``.
 

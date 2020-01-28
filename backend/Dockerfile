@@ -1,13 +1,10 @@
 # Pull base image
-
 FROM python:3.7-slim
-
-# Set environment variables
+# Set environment varibles
 ENV PYTHONDONTWRITEBYTECODE 1
 ENV PYTHONUNBUFFERED 1
-
 # Set work directory
-WORKDIR /
+WORKDIR /code
 
 # Copies the requirements.txt to the container
 COPY requirements.txt .
