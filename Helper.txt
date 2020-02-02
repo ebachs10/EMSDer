@@ -1,0 +1,1 @@
+docker-compose -f local.yml run --rm django python manage.py graph_models -a > model_overview.dot

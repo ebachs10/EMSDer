@@ -278,3 +278,7 @@ SOCIALACCOUNT_ADAPTER = "emsder.users.adapters.SocialAccountAdapter"
 
 # Your stuff...
 # ------------------------------------------------------------------------------
+GRAPH_MODELS = {
+  'all_applications': True,
+  'group_models': True,
+}
