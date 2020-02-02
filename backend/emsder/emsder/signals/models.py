@@ -7,12 +7,21 @@ class SignalCategory(BaseModel):
     alias = models.CharField(max_length=200)
 
     def __str__(self):
-        return self.name       
+        return self.name
+
+#class DataType(BaseModel):
+#    name = models.CharField(max_length=200)
+#    memoryspace = models.IntegerField()   
+#
+#
+#    def __str__(self):
+#        return self.name                
 
 class Signal(BaseModel):
     name = models.CharField(max_length=200)
     component = models.ForeignKey('components.Component', related_name='signals', default=1, on_delete=models.CASCADE)
     signalcategory = models.OneToOneField(SignalCategory, default=1, on_delete = models.SET_DEFAULT)
+    datatype = models.OneToOneField('datatypes.Datatype', default=1, on_delete = models.SET_DEFAULT)
 
     @property
     def signalname(self):

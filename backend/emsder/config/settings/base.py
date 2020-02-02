@@ -82,6 +82,7 @@ LOCAL_APPS = [
     "emsder.basemodels.apps.BasemodelsConfig",
     "emsder.projects.apps.ProjectsConfig",
     "emsder.customers.apps.CustomersConfig",
+    "emsder.datatypes.apps.DatatypesConfig",
     "emsder.logicaldecomposition.networkarchitectures.apps.NetworkarchitecturesConfig",
     "emsder.logicaldecomposition.systemarchitectures.apps.SystemarchitecturesConfig",
 ]
