@@ -74,7 +74,15 @@ THIRD_PARTY_APPS = [
 
 LOCAL_APPS = [
     "emsder.users.apps.UsersConfig",
+
     # Your stuff: custom apps go here
+    "emsder.components.apps.ComponentsConfig",
+    "emsder.signals.apps.SignalsConfig",
+    "emsder.basemodels.apps.BasemodelsConfig",
+    "emsder.projects.apps.ProjectsConfig",
+    "emsder.customers.apps.CustomersConfig",
+    "emsder.logicaldecomposition.networkarchitectures.apps.NetworkarchitecturesConfig",
+    "emsder.logicaldecomposition.systemarchitectures.apps.SystemarchitecturesConfig",
 ]
 # https://docs.djangoproject.com/en/dev/ref/settings/#installed-apps
 INSTALLED_APPS = DJANGO_APPS + THIRD_PARTY_APPS + LOCAL_APPS
