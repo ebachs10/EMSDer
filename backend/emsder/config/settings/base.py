@@ -78,6 +78,7 @@ LOCAL_APPS = [
     # Your stuff: custom apps go here
     "emsder.components.apps.ComponentsConfig",
     "emsder.signals.apps.SignalsConfig",
+    "emsder.emsder.apps.SignalsConfig",
     "emsder.basemodels.apps.BasemodelsConfig",
     "emsder.projects.apps.ProjectsConfig",
     "emsder.customers.apps.CustomersConfig",
