@@ -11,7 +11,7 @@ class Component(BaseModel):
     name = models.CharField(max_length=200, null=True)
     typenumber = models.CharField(max_length=200)
     description = models.TextField(blank=True, null=True)
-    manufacture = models.OneToOneField(Manufacture, default=1, on_delete = models.SET_DEFAULT)
+    manufacture = models.ForeignKey(Manufacture, unique=True, default=1, on_delete = models.SET_DEFAULT)
     #signal
 
     def __str__(self):

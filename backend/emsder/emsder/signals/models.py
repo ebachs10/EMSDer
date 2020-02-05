@@ -20,12 +20,12 @@ class SignalCategory(BaseModel):
 class Signal(BaseModel):
     name = models.CharField(max_length=200)
     component = models.ForeignKey('components.Component', related_name='signals', default=1, on_delete=models.CASCADE)
-    signalcategory = models.OneToOneField(SignalCategory, default=1, on_delete = models.SET_DEFAULT)
-    datatype = models.OneToOneField('datatypes.Datatype', default=1, on_delete = models.SET_DEFAULT)
+    signalcategory = models.ForeignKey(SignalCategory, unique=True, default=1, on_delete = models.SET_DEFAULT)
+    datatype = models.ForeignKey('datatypes.Datatype', unique=True, default=1, on_delete = models.SET_DEFAULT, blank=True)
 
     @property
     def signalname(self):
-        return self.name
+        return "%s_%s" % (self.signalcategory.alias, self.name)
 
     def __str__(self):
         return self.name

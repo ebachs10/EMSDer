@@ -19,3 +19,6 @@ coreapi==2.3.3  # https://github.com/core-api/python-client
 
 # django grappelli added by EBS
 django-grappelli
+
+# simply history added by EBS
+django-simple-history
