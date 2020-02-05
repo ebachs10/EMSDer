@@ -12,7 +12,7 @@ class Component(BaseModel):
     typenumber = models.CharField(max_length=200)
     description = models.TextField(blank=True, null=True)
     manufacture = models.ForeignKey(Manufacture, unique=True, default=1, on_delete = models.SET_DEFAULT)
-    #signal
+
 
     def __str__(self):
         return self.typenumber
