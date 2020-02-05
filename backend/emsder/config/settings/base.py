@@ -61,6 +61,7 @@ DJANGO_APPS = [
     "django.contrib.messages",
     "django.contrib.staticfiles",
     # "django.contrib.humanize", # Handy template tags
+    'grappelli', # Must be called before django.contrib.admin. Should have been part of THIRD_PARTY_APPS
     "django.contrib.admin",
     "django.forms",
 ]
