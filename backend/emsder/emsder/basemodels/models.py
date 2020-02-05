@@ -1,10 +1,10 @@
 from django.db import models
-from simple_history.models import HistoricalRecords
+#from simple_history.models import HistoricalRecords
 
 class BaseModel(models.Model):
     created_date = models.DateTimeField(auto_now=True)
     modified_date = models.DateTimeField(auto_now_add=True)
-    history = HistoricalRecords()
+    #history = HistoricalRecords(inherit=True)
 
     class Meta:
         abstract = True

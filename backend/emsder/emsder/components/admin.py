@@ -9,7 +9,8 @@ class SignalInline(admin.StackedInline):
     readonly_fields = ('signalname',)
 
 class ComponentAdmin(admin.ModelAdmin):
-    list_display = ['name', 'ManufactureName', 'typenumber','created_date', 'modified_date']
+    #list_display = ['name', 'ManufactureName', 'typenumber','created_date', 'modified_date']
+    list_display = ['name', 'ManufactureName', 'typenumber']
     fields = (('name', 'manufacture'), 'typenumber')
 
     inlines = [
