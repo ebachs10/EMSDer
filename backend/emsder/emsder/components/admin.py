@@ -10,7 +10,7 @@ class SignalInline(admin.StackedInline):
 
 class ComponentAdmin(admin.ModelAdmin):
     #list_display = ['name', 'ManufactureName', 'typenumber','created_date', 'modified_date']
-    list_display = ['name', 'ManufactureName', 'typenumber']
+    list_display = ['name', 'ManufactureName', 'typenumber' , 'modified_date']
     fields = (('name', 'manufacture'), 'typenumber')
 
     inlines = [

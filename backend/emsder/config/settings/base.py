@@ -83,6 +83,7 @@ LOCAL_APPS = [
     "emsder.interfaces.apps.InterfacesConfig",
     "emsder.basemodels.apps.BasemodelsConfig",
     "emsder.projects.apps.ProjectsConfig",
+    "emsder.preferences.apps.PreferencesConfig",
     "emsder.customers.apps.CustomersConfig",
     "emsder.datatypes.apps.DatatypesConfig",
     "emsder.systemofunits.apps.SystemofunitsConfig",
