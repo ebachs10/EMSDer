@@ -1,6 +1,8 @@
 from django.db import models
 from basemodels.models import BaseModel
+import reversion
 
+@reversion.register()
 class UnitPrefix(BaseModel):
     name = models.CharField(max_length=200)
     symbol = models.CharField(max_length=10)
@@ -9,6 +11,7 @@ class UnitPrefix(BaseModel):
     englishwordshort = models.CharField(max_length=30)
     englishwordlong = models.CharField(max_length=50)
 
+@reversion.register()
 class SiUnit(BaseModel):
     name = models.CharField(max_length=200)
     symbol = models.CharField(max_length=200)
@@ -19,6 +22,7 @@ class SiUnit(BaseModel):
     def __str__(self):
         return self.name
 
+@reversion.register()
 class NonSiUnit(BaseModel):
     name = models.CharField(max_length=200)
     siunit = models.ForeignKey(SiUnit, unique=True, default=1, on_delete = models.SET_DEFAULT)

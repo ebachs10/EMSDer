@@ -1,6 +1,9 @@
 from django.db import models
 from basemodels.models import BaseModel
+import reversion
 
+
+@reversion.register()
 class SystemType(BaseModel):
     SYSTEM_TYPE_CHOICES =(
         ('Internal', 'Internal'),
@@ -9,7 +12,8 @@ class SystemType(BaseModel):
     systemtype = models.CharField(max_length=10,
                                     choices=SYSTEM_TYPE_CHOICES,
                                     default = 'Internal')
-
+                                    
+@reversion.register()
 class System(BaseModel):
     project = models.ForeignKey('projects.Project', related_name='systems', default=1, on_delete = models.SET_DEFAULT)
     name = models.CharField(max_length=200)

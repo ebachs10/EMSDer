@@ -1,10 +1,12 @@
 from django.db import models
 from basemodels.models import BaseModel
-from simple_history.models import HistoricalRecords
+import reversion
+
 
 #class GeneralPreferences(BaseModel):
 #    pass
 
+@reversion.register()
 class ProjectPreference(BaseModel):
     CAMELCASE = 'CC'
     UNDERSCORE = 'US'

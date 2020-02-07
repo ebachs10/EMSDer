@@ -1,7 +1,9 @@
 from django.db import models
 from django.utils.timezone import now
 from basemodels.models import BaseModel
+import reversion
 
+@reversion.register()
 class SignalCategory(BaseModel):
     name = models.CharField(max_length=200) 
     alias = models.CharField(max_length=200)
@@ -16,7 +18,7 @@ class SignalCategory(BaseModel):
 #
 #    def __str__(self):
 #        return self.name                
-
+@reversion.register()
 class Signal(BaseModel):
     name = models.CharField(max_length=200)
     component = models.ForeignKey('components.Component', related_name='signals', default=1, on_delete=models.CASCADE, blank=True, null=True)

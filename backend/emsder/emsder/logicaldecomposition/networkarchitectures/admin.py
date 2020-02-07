@@ -1,3 +1,8 @@
 from django.contrib import admin
+from .models import NetworkArchitecture
+from reversion.admin import VersionAdmin
 
-# Register your models here.
+class NetworkArchitectureAdmin(VersionAdmin):
+    pass
+
+admin.site.register(NetworkArchitecture, NetworkArchitectureAdmin)

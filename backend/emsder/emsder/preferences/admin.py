@@ -1,4 +1,8 @@
 from django.contrib import admin
 from .models import ProjectPreference
+from reversion.admin import VersionAdmin
 
-admin.site.register(ProjectPreference)
+class ProjectPreferenceAdmin(VersionAdmin):
+    pass
+
+admin.site.register(ProjectPreference, ProjectPreferenceAdmin)

@@ -1,6 +1,16 @@
 from django.contrib import admin
 from .models import UnitPrefix, NonSiUnit, SiUnit
+from reversion.admin import VersionAdmin
 
-admin.site.register(UnitPrefix)
-admin.site.register(NonSiUnit)
-admin.site.register(SiUnit)
+class UnitPrefixAdmin(VersionAdmin):
+    pass
+
+class NonSiUnitAdmin(VersionAdmin):
+    pass
+
+class SiUnitAdmin(VersionAdmin):
+    pass
+
+admin.site.register(UnitPrefix, UnitPrefixAdmin)
+admin.site.register(NonSiUnit, NonSiUnitAdmin)
+admin.site.register(SiUnit, SiUnitAdmin)

@@ -1,6 +1,8 @@
 from django.db import models
 from basemodels.models import BaseModel
+import reversion
 
+@reversion.register
 class BusType(BaseModel):
     SYSTEM_TYPE_CHOICES =[
     ('EtherCAT', 'EtherCAT'),
@@ -13,9 +15,10 @@ class BusType(BaseModel):
         default = 'EtherCAT',
     )
 
+@reversion.register
 class Interface(BaseModel):
     name = models.CharField(max_length=200)
-    bustype = models.OneToOneField(BusType, default=1, on_delete = models.SET_DEFAULT)
+    bustype = models.ForeignKey(BusType, default=1, on_delete = models.PROTECT)
     samplerate = models.IntegerField()
 
     def __str__(self):

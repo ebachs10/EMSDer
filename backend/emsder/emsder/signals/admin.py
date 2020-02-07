@@ -1,5 +1,12 @@
 from django.contrib import admin
 from .models import Signal, SignalCategory
+from reversion.admin import VersionAdmin
 
-admin.site.register(Signal)
-admin.site.register(SignalCategory)
+class SignalAdmin(VersionAdmin):
+    pass
+
+class SignalCategoryAdmin(VersionAdmin):
+    pass
+
+admin.site.register(Signal, SignalAdmin)
+admin.site.register(SignalCategory, SignalCategoryAdmin)
