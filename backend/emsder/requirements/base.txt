@@ -22,3 +22,7 @@ django-grappelli
 
 # simply history added by EBS
 django-simple-history
+
+# django reversion added by EBS
+django-reversion
+

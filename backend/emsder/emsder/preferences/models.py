@@ -22,7 +22,6 @@ class ProjectPreference(BaseModel):
 
     signal_name_style = models.CharField(max_length=200, choices=SIGNAL_NAME_STYLE_CHOICES, default=UNDERSCORE,)
     signal_name_concatenation = models.CharField(max_length=200, choices=SIGNAL_NAME_CONCATENATION_CHOICES, default=SCSNCN,) # signal class + signal name + component name
-    history = HistoricalRecords()
 
     def __str__(self):
         return self.name

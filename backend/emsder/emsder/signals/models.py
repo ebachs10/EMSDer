@@ -1,12 +1,10 @@
 from django.db import models
 from django.utils.timezone import now
 from basemodels.models import BaseModel
-from simple_history.models import HistoricalRecords
 
 class SignalCategory(BaseModel):
     name = models.CharField(max_length=200) 
     alias = models.CharField(max_length=200)
-    history = HistoricalRecords()
 
     def __str__(self):
         return self.name
@@ -25,7 +23,6 @@ class Signal(BaseModel):
     #interface = models.ForeignKey('interfaces.Interface', related_name='signals', default=1, on_delete=models.CASCADE, blank=True, null=True)
     signalcategory = models.ForeignKey(SignalCategory, default=1, on_delete = models.SET_DEFAULT, blank=True, null=True)
     datatype = models.ForeignKey('datatypes.Datatype', default=1, on_delete = models.SET_DEFAULT, blank=True, null=True)
-    history = HistoricalRecords()
 
     @property
     def signalname(self):

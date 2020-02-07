@@ -61,7 +61,7 @@ DJANGO_APPS = [
     "django.contrib.messages",
     "django.contrib.staticfiles",
     # "django.contrib.humanize", # Handy template tags
-    'grappelli', # Must be called before django.contrib.admin. Should have been part of THIRD_PARTY_APPS
+    #'grappelli', # Must be called before django.contrib.admin. Should have been part of THIRD_PARTY_APPS
     "django.contrib.admin",
     "django.forms",
 ]
@@ -72,6 +72,7 @@ THIRD_PARTY_APPS = [
     "allauth.socialaccount",
     "rest_framework",
     'simple_history',
+    'reversion',
 ]
 
 LOCAL_APPS = [
@@ -136,6 +137,8 @@ AUTH_PASSWORD_VALIDATORS = [
 # ------------------------------------------------------------------------------
 # https://docs.djangoproject.com/en/dev/ref/settings/#middleware
 MIDDLEWARE = [
+    #"simple_history.middleware.HistoryRequestMiddleware",
+    'reversion.middleware.RevisionMiddleware',
     "django.middleware.security.SecurityMiddleware",
     "django.contrib.sessions.middleware.SessionMiddleware",
     "django.middleware.locale.LocaleMiddleware",
@@ -145,7 +148,6 @@ MIDDLEWARE = [
     "django.contrib.messages.middleware.MessageMiddleware",
     "django.middleware.common.BrokenLinkEmailsMiddleware",
     "django.middleware.clickjacking.XFrameOptionsMiddleware",
-    'simple_history.middleware.HistoryRequestMiddleware',
 ]
 
 # STATIC
