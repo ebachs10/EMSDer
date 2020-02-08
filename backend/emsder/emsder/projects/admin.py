@@ -9,10 +9,10 @@ class ProjectAdmin(VersionAdmin):
         return qs.annotate(subcontractors_count=Count('subcontractor'))
 
     def subcontractors_count(self, inst):
-        return inst.subcontractors_count
+        return inst.subcontractors_count   
 
 
-    list_display = ['name', 'subcontractors_count']
+    list_display = ['name', 'subcontractors_count', 'systems_count']
 
 
 admin.site.register(Project, ProjectAdmin)
