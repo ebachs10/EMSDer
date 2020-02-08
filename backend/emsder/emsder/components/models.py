@@ -6,17 +6,35 @@ import reversion
 @reversion.register()
 class Manufacture(BaseModel):
     name = models.CharField(max_length=200) 
-    #component = models.ForeignKey(Component, related_name='manufacturer', on_delete=models.CASCADE)     
+    #component = models.ForeignKey(Component, related_name='manufacturer', on_delete=models.CASCADE) 
+    # 
+    # 
+@reversion.register()
+class ComponentClass(BaseModel):
+    name = models.CharField(max_length=200)         
 
 @reversion.register()
 class Component(BaseModel):
-    system = models.ForeignKey('systemarchitectures.System', related_name='components', default=1, on_delete = models.PROTECT)
-    name = models.CharField(max_length=200, null=True)
+
+    name = models.CharField(max_length=200, null=True, blank=True)
+    project = models.ForeignKey('projects.Project', related_name='components', default=1, on_delete = models.PROTECT, null = True, blank = True)
+    system = models.ForeignKey('systemarchitectures.System', related_name='components', default=1, on_delete = models.PROTECT, null=True, blank=True)
+    componentclass = models.ForeignKey(ComponentClass, on_delete = models.PROTECT, null=True, blank=True)
     typenumber = models.CharField(max_length=200)
     description = models.TextField(blank=True, null=True)
-    manufacture = models.ForeignKey(Manufacture, default=1, on_delete = models.SET_DEFAULT)
+    manufacture = models.ForeignKey(Manufacture, on_delete = models.PROTECT)
+
+    @property
+    def signals_count(self):
+        if self.signals is not None and self.signals.count() > 0:
+            return self.signals.count()
+        return None    
 
     def __str__(self):
         return self.typenumber
 
-
+@reversion.register()
+class PiDiagram(BaseModel):
+    components = models.ManyToManyField('Component', null = True, blank = True)
+    project = models.ForeignKey('projects.Project', related_name='pidiagram', on_delete = models.PROTECT)
+    system = models.ForeignKey('systemarchitectures.System', unique=True, related_name='pidiagram', default=1, on_delete = models.PROTECT)

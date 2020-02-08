@@ -10,14 +10,7 @@ class SignalCategory(BaseModel):
 
     def __str__(self):
         return self.name
-
-#class DataType(BaseModel):
-#    name = models.CharField(max_length=200)
-#    memoryspace = models.IntegerField()   
-#
-#
-#    def __str__(self):
-#        return self.name                
+               
 @reversion.register()
 class Signal(BaseModel):
     name = models.CharField(max_length=200)
@@ -32,3 +25,32 @@ class Signal(BaseModel):
 
     def __str__(self):
         return self.name
+
+
+@reversion.register()
+class ProjectAlarmLevel(BaseModel):        
+    alias = models.CharField(max_length=200) # e.g Slow, Fast, Coast 
+
+    @property
+    def level(self):
+        return 1
+
+@reversion.register()
+class SignalAlarm(BaseModel):   
+    signal = models.ForeignKey(Signal, related_name='signalalarm', default=1, on_delete=models.PROTECT, blank=True, null=True)
+    autoreset = models.BooleanField() 
+    description = models.CharField(max_length=200, blank=True, null=True)
+    action = models.CharField(max_length=200, blank=True, null=True)
+
+    lowervalue = models.FloatField(blank=True, null=True)
+    currentvalue = models.FloatField() # Remember to include check that its between lower and upper
+    uppervalue =models.FloatField(blank=True, null=True)
+
+    lowerdelay = models.FloatField(blank=True, null=True)
+    currentdelay = models.FloatField(blank=True, null=True)
+    upperdelay = models.FloatField(blank=True, null=True)
+    
+
+
+    
+

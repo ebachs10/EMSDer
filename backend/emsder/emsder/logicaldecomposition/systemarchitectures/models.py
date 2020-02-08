@@ -17,11 +17,17 @@ class SystemType(BaseModel):
 class System(BaseModel):
     project = models.ForeignKey('projects.Project', related_name='systems', default=1, on_delete = models.SET_DEFAULT)
     name = models.CharField(max_length=200)
-    systemtype = models.ForeignKey(SystemType, unique=True, default=1, on_delete = models.SET_DEFAULT)
+    systemtype = models.ForeignKey(SystemType, default=1, on_delete = models.SET_DEFAULT)
     description = models.TextField(blank=True, null=True)
 
     # Make it possible to create sub systems.
     system = models.ForeignKey('self', on_delete=models.CASCADE, related_name='+', blank=True, null=True)
+
+    #@property
+    #def sub_systems_count(self):
+    #    if self.system is not None and self.system.count() > 0:
+    #        return self.system.count()
+    #    return None    
     
 
     def __str__(self):

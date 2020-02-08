@@ -14,7 +14,7 @@ class Project(BaseModel):
     def systems_count(self):
         if self.systems is not None and self.systems.count() > 0:
             return self.systems.count()
-        return None # or -1 or something that tells that there are no movements
+        return None
     
     def __str__(self):
         return self.name
