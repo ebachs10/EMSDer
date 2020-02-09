@@ -16,13 +16,14 @@ class ComponentClass(BaseModel):
 @reversion.register()
 class Component(BaseModel):
 
-    name = models.CharField(max_length=200, null=True, blank=True)
+   #name = models.CharField(max_length=200, null=True, blank=True)
     project = models.ForeignKey('projects.Project', related_name='components', default=1, on_delete = models.PROTECT, null = True, blank = True)
     system = models.ForeignKey('systemarchitectures.System', related_name='components', default=1, on_delete = models.PROTECT, null=True, blank=True)
     componentclass = models.ForeignKey(ComponentClass, on_delete = models.PROTECT, null=True, blank=True)
     typenumber = models.CharField(max_length=200)
     description = models.TextField(blank=True, null=True)
     manufacture = models.ForeignKey(Manufacture, on_delete = models.PROTECT)
+    picomponent = models.ForeignKey('PiComponent', related_name='components',    default=1, on_delete = models.PROTECT, null = True, blank = True)
 
     @property
     def signals_count(self):
@@ -34,7 +35,20 @@ class Component(BaseModel):
         return self.typenumber
 
 @reversion.register()
-class PiDiagram(BaseModel):
-    components = models.ManyToManyField('Component', null = True, blank = True)
-    project = models.ForeignKey('projects.Project', related_name='pidiagram', on_delete = models.PROTECT)
-    system = models.ForeignKey('systemarchitectures.System', unique=True, related_name='pidiagram', default=1, on_delete = models.PROTECT)
+class PiComponent(BaseModel):
+    name = models.CharField(max_length=200, null=True, blank=True)
+    project = models.ForeignKey('projects.Project', related_name='picomponent', on_delete = models.PROTECT)
+    system = models.ForeignKey('systemarchitectures.System', unique=True, related_name='picomponent', default=1, on_delete = models.PROTECT)
+    #components = models.ForeignKey(Component, on_delete = models.PROTECT, null=True, blank=True)
+    #components = models.ManyToManyField(Component)
+    
+    def __unicode__(self):
+        return self.name
+
+#@reversion.register()
+#class PiDiagram(BaseModel):
+#    name = models.CharField(max_length=200, null=True, blank=True)
+#
+#    
+#    def __unicode__(self):
+#        return self.name        
