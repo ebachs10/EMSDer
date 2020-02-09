@@ -11,7 +11,8 @@ class Manufacture(BaseModel):
     # 
 @reversion.register()
 class ComponentClass(BaseModel):
-    name = models.CharField(max_length=200)         
+    name = models.CharField(max_length=200)     
+    
 
 @reversion.register()
 class Component(BaseModel):
@@ -23,7 +24,8 @@ class Component(BaseModel):
     typenumber = models.CharField(max_length=200)
     description = models.TextField(blank=True, null=True)
     manufacture = models.ForeignKey(Manufacture, on_delete = models.PROTECT)
-    picomponent = models.ForeignKey('PiComponent', related_name='components',    default=1, on_delete = models.PROTECT, null = True, blank = True)
+    #picomponent = models.ForeignKey(PiComponent, on_delete = models.PROTECT, null = True, blank = True)
+    #picomponent = models.ManyToManyField(PiComponent)
 
     @property
     def signals_count(self):
@@ -37,13 +39,14 @@ class Component(BaseModel):
 @reversion.register()
 class PiComponent(BaseModel):
     name = models.CharField(max_length=200, null=True, blank=True)
-    project = models.ForeignKey('projects.Project', related_name='picomponent', on_delete = models.PROTECT)
-    system = models.ForeignKey('systemarchitectures.System', unique=True, related_name='picomponent', default=1, on_delete = models.PROTECT)
-    #components = models.ForeignKey(Component, on_delete = models.PROTECT, null=True, blank=True)
-    #components = models.ManyToManyField(Component)
-    
+    project = models.ForeignKey('projects.Project', related_name='picomponent', default=1, on_delete = models.PROTECT)
+    system = models.ForeignKey('systemarchitectures.System', unique=False, related_name='picomponent', default=1, on_delete = models.PROTECT)
+    component = models.ForeignKey(Component, unique=False, default=1, on_delete = models.PROTECT )
+
+
     def __unicode__(self):
-        return self.name
+        return self.name   
+
 
 #@reversion.register()
 #class PiDiagram(BaseModel):
