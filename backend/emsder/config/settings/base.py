@@ -62,6 +62,7 @@ DJANGO_APPS = [
     "django.contrib.staticfiles",
     # "django.contrib.humanize", # Handy template tags
     #'grappelli', # Must be called before django.contrib.admin. Should have been part of THIRD_PARTY_APPS
+    "nested_inline",
     "django.contrib.admin",
     "django.forms",
 ]

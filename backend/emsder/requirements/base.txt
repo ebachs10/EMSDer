@@ -26,3 +26,6 @@ django-simple-history
 # django reversion added by EBS
 django-reversion
 
+# django nested admin
+django-nested-inline
+

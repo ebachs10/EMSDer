@@ -38,6 +38,7 @@ class ProjectAlarmLevel(BaseModel):
 @reversion.register()
 class SignalAlarm(BaseModel):   
     signal = models.ForeignKey(Signal, related_name='signalalarm', default=1, on_delete=models.PROTECT, blank=True, null=True)
+    picomponent = models.ForeignKey('components.Component', related_name='signal', on_delete=models.PROTECT, blank=True, null=True)
     autoreset = models.BooleanField() 
     description = models.CharField(max_length=200, blank=True, null=True)
     action = models.CharField(max_length=200, blank=True, null=True)
